@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+
+package EhrEntityScraper::Scrapers;
+
+use strict;
+use warnings;
+use vars qw($VERSION @EXPORT @EXPORT_OK %EXPORT_TAGS @ISA);
+use Exporter;
+
+@ISA    = qw (Exporter);
+@EXPORT = qw (getScraper);
+
+my $scrapers = {
+                Stanford => 1,
+               };
+
+sub getScraper {
+    my $name = $_;
+
+    if (defined ($scrapers->{$name})) {
+        return new EhrEntityScraper::$name();
+    }
+}
